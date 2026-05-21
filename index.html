@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, My Queen 👑</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="petal-bg" id="petals"></div>
+    <div class="hero-crown">👑</div>
+    <p class="hero-subtitle">Today is all about you</p>
+    <h1 class="hero-title">Happy Birthday,<br /><span class="hero-name">Omojojuola</span></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">You came into this world and made it infinitely more beautiful. Today, we celebrate you.</p>
+    <p class="scroll-hint">↓ scroll ↓</p>
+  </section>
+
+  <!-- LETTER -->
+  <section class="section">
+    <p class="section-label">From the heart</p>
+    <h2 class="section-title">A letter, just for you</h2>
+    <div class="letter-card">
+      <p>Omojojuola,</p>
+      <p>
+        There are people you meet in life who feel less like an accident and more like a miracle
+        and that's exactly what you are to me. From the very first time we talked until our stomachs hurt
+        to every quiet moment where you just <em>knew</em> what I needed without me saying a word,
+        you have been one of the greatest blessings of my life.
+      </p>
+      <p>
+        You carry so much grace. The way you love people fully, fiercely, and without condition
+        is something rare in this world. You deserve every good thing that finds its way to you,
+        and I mean that with my whole heart.
+      </p>
+      <p>
+        Happy birthday my favourite person, i know i can be a lot sometimes I'm sorry tho, but just know i love youuu,
+        You stuck with me my love <br> On this day, I want you to feel what I feel every single day I get to call you my
+        home girl,
+        seen, celebrated, and deeply, deeply loved. <br> Hope your day is as amazing as you are <br> Love you fr babe
+      </p>
+      <p>
+        May this year bring you everything your beautiful soul has been quietly hoping for.
+        May every door open at just the right time. May joy find you in the smallest moments.
+        And may you always know no matter what that I am here.
+      </p>
+      <p>Happy Birthday, My Queen. 🌸</p>
+      <div class="letter-sign">— Your hb, always 💗 I love you</div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="photos-section">
+    <p class="section-label">Memories</p>
+    <h2 class="section-title"
+      style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--dark);">Us, through the
+      years</h2>
+    <div class="photo-drop-zone" id="photo-grid">
+      <div class="photo-slot photo-added">
+        <img src="image1.png.jpg" alt="She herself" />
+      </div>
+      <div class="photo-slot photo-added">
+        <img src="image2.png.JPG" alt="Her laugh self" />
+      </div>
+      <div class="photo-slot photo-added">
+        <img src="image3.png.jpeg" alt="Another lovely memory" />
+      </div>
+      <div class="photo-slot photo-placeholder">
+        <div class="placeholder">+</div>
+        <div class="placeholder-text">Add another memory</div>
+      </div>
+    </div>
+    <div class="media-row">
+      <div class="video-card">
+        <video controls playsinline autoplay>
+          <source src="birthday-video.html.mp4" type="video/mp4" />
+          Your browser does not support this video.
+        </video>
+        <div class="video-label">Birthday video</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUSIC -->
+  <section class="music-section">
+    <p class="section-label">🎵 A little something</p>
+    <h2 class="section-title"
+      style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--dark);">Your birthday
+      playlist</h2>
+    <div class="music-placeholder" id="music-area">
+      <p style="font-size:0.9rem;color:#7a6060;">Paste a Spotify, YouTube, or SoundCloud link below</p>
+      <input class="music-input" id="music-url" type="text" placeholder="https://open.spotify.com/..." />
+      <button class="music-btn" onclick="embedMusic()">Add Song 🎶</button>
+    </div>
+  </section>
+
+  <!-- FIREWORKS -->
+  <section class="fireworks-section">
+    <canvas id="fireworks-canvas"></canvas>
+    <p class="section-label">🎆 Light it up</p>
+    <h2 class="section-title">Let's celebrate!</h2>
+    <p style="color:#c9b8d4;font-size:1rem;margin-top:0.5rem;">Because every queen deserves fireworks.</p>
+    <button class="fireworks-btn" onclick="launchFireworks()">🎇 Launch Fireworks</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Made with <span>♥</span> for the most amazing person I know.<br />
+    <span>Happy Birthday, My Queen 👑</span>
+  </footer>
+
+  <script>
+    /* ── PETALS ── */
+    const petalColors = ['#f4b8be', '#dba9d0', '#f9d5d8', '#c9a8d4', '#f7c5d2'];
+    const petalBg = document.getElementById('petals');
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+      p.style.animationDuration = (6 + Math.random() * 8) + 's';
+      p.style.animationDelay = (Math.random() * 8) + 's';
+      p.style.width = (8 + Math.random() * 10) + 'px';
+      p.style.height = (14 + Math.random() * 10) + 'px';
+      petalBg.appendChild(p);
+    }
+
+    /* ── CONFETTI on load ── */
+    (function () {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = innerWidth; canvas.height = innerHeight;
+      window.addEventListener('resize', () => { canvas.width = innerWidth; canvas.height = innerHeight; });
+      const colors = ['#c9747a', '#c9a84c', '#9b7ca8', '#f5dde0', '#f9a8d4', '#a78bfa'];
+      const pieces = [];
+      for (let i = 0; i < 120; i++) {
+        pieces.push({
+          x: Math.random() * innerWidth,
+          y: Math.random() * innerHeight - innerHeight,
+          w: 6 + Math.random() * 8,
+          h: 3 + Math.random() * 5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          speed: 1.5 + Math.random() * 2.5,
+          drift: (Math.random() - 0.5) * 1.5,
+          spin: (Math.random() - 0.5) * 4,
+          opacity: 0.8 + Math.random() * 0.2
+        });
+      }
+      let frame = 0, running = true;
+      function draw() {
+        if (!running) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation * Math.PI / 180);
+          ctx.globalAlpha = p.opacity;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+          p.y += p.speed; p.x += p.drift; p.rotation += p.spin;
+          if (p.y > canvas.height + 10) { p.y = -10; p.x = Math.random() * canvas.width; }
+        });
+        frame++;
+        if (frame < 300) requestAnimationFrame(draw);
+        else { running = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+      }
+      draw();
+    })();
+
+    function loadPhoto(e, slot) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = document.createElement('img');
+        img.src = ev.target.result;
+        slot.querySelectorAll('.placeholder,.placeholder-text,input').forEach(el => el.style.display = 'none');
+        slot.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* ── MUSIC EMBED ── */
+    function embedMusic() {
+      const url = document.getElementById('music-url').value.trim();
+      if (!url) { alert('Please paste a music link!'); return; }
+      let embedSrc = '';
+      const area = document.getElementById('music-area');
+
+      if (url.includes('spotify.com')) {
+        const id = url.split('/').pop().split('?')[0];
+        const type = url.includes('/track/') ? 'track' : url.includes('/playlist/') ? 'playlist' : 'album';
+        embedSrc = `https://open.spotify.com/embed/${type}/${id}`;
+        area.innerHTML = `<iframe style="border-radius:16px" src="${embedSrc}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+      } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        let vid = url.split('v=')[1] || url.split('/').pop();
+        vid = vid.split('&')[0].split('?')[0];
+        area.innerHTML = `<iframe width="100%" height="250" src="https://www.youtube.com/embed/${vid}?autoplay=0" frameborder="0" allowfullscreen style="border-radius:16px"></iframe>`;
+      } else if (url.includes('soundcloud.com')) {
+        area.innerHTML = `<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23c9747a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false" style="border-radius:16px"></iframe>`;
+      } else {
+        alert('Paste a Spotify, YouTube, or SoundCloud link 🎶');
+      }
+    }
+
+    /* ── FIREWORKS ── */
+    const fwCanvas = document.getElementById('fireworks-canvas');
+    const fwCtx = fwCanvas.getContext('2d');
+    let fwParticles = [];
+    let fwLooping = false;
+    let fwPendingBursts = 0;
+
+    function resizeFW() {
+      fwCanvas.width = fwCanvas.offsetWidth;
+      fwCanvas.height = fwCanvas.offsetHeight;
+    }
+
+    function launchFireworks() {
+      resizeFW();
+      fwPendingBursts = 6;
+      if (!fwLooping) { fwLooping = true; fwLoop(); }
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          burst(
+            Math.random() * fwCanvas.width * 0.8 + fwCanvas.width * 0.1,
+            Math.random() * fwCanvas.height * 0.6 + 20
+          );
+          fwPendingBursts = Math.max(0, fwPendingBursts - 1);
+        }, i * 180);
+      }
+    }
+
+    function burst(x, y) {
+      const colors = ['#f9a8d4', '#c9a84c', '#a78bfa', '#f5dde0', '#c9747a', '#fff', '#6ee7b7'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 60; i++) {
+        const angle = (i / 60) * Math.PI * 2;
+        const speed = 1.5 + Math.random() * 3.5;
+        fwParticles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color,
+          radius: 2 + Math.random() * 2,
+          decay: 0.015 + Math.random() * 0.015
+        });
+      }
+    }
+
+    function fwLoop() {
+      fwCtx.fillStyle = 'rgba(26,15,46,0.18)';
+      fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
+      fwParticles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        p.vy += 0.05;
+        p.alpha -= p.decay;
+        fwCtx.globalAlpha = Math.max(0, p.alpha);
+        fwCtx.beginPath();
+        fwCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        fwCtx.fillStyle = p.color;
+        fwCtx.fill();
+      });
+      fwCtx.globalAlpha = 1;
+      fwParticles = fwParticles.filter(p => p.alpha > 0);
+      if (fwParticles.length > 0 || fwPendingBursts > 0) {
+        requestAnimationFrame(fwLoop);
+      } else {
+        fwLooping = false;
+      }
+    }
+  </script>
+</body>
+
+</html>
